@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import ComponenteB from '../pure/componente_b';
 import { Contact } from '../../models/contact.class';
 
@@ -9,10 +9,18 @@ const ComponenteA = () => {
 		'susan_gucho@gmail.com',
 		false,
 	);
+	const [contact, setContact] = useState(defaultContact);
+
+	const toggleConnection = () => {
+		setContact({
+			...contact,
+			isConnected: !contact.isConnected,
+		});
+	};
 
 	return (
 		<div>
-			<ComponenteB contact={defaultContact} />
+			<ComponenteB contact={contact} toggleConnection={toggleConnection} />
 		</div>
 	);
 };
